@@ -1,0 +1,109 @@
+﻿<UserControl x:Class="PlayStore.Views.UserMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PlayStore.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="60" d:DesignWidth="930" MaxHeight="150" 
+             Background="DodgerBlue"
+             DataContext="{Binding Source={StaticResource locator}, Path=UserMenuViewModel}"
+             
+             >
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Styles/Styles1.xaml"></ResourceDictionary>
+    </UserControl.Resources>
+  
+
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.2*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="1" Orientation="Horizontal">
+            <TextBox Width="360" Height="30" FontSize="15" Text="{Binding GameName}" Margin="10,0,0,0"></TextBox>
+            <Button Width="50" Height="30" Command="{Binding SearchGameCommand}" Background="Lime" 
+                    Template="{StaticResource SearchButton}">
+
+                <Image Source="https://cdn2.iconfinder.com/data/icons/font-awesome/1792/search-512.png"></Image>
+
+            </Button>
+
+
+
+            <ToggleButton Background="DodgerBlue" Margin="30,0,0,0" 
+                          x:Name="Popup_button" 
+                          Template="{StaticResource AccountButton}" 
+                          Visibility="{Binding VisibleUserProfile}"
+                          >
+                <StackPanel Orientation="Horizontal">
+                    <Ellipse
+                        Width="60"
+                        Height="60">
+                        <Ellipse.Fill>
+                            <ImageBrush ImageSource="{Binding CurrentUser.Photo}" Stretch="UniformToFill"></ImageBrush>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <TextBlock Text="{Binding CurrentUser.Name}" Foreground="White" FontSize="16" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                </StackPanel>
+            </ToggleButton>
+
+            
+            <Popup StaysOpen="True" IsOpen="{Binding IsChecked, ElementName=Popup_button, Mode=TwoWay}" 
+                   
+               PlacementTarget="{Binding ElementName=Popup_button}" 
+               AllowsTransparency="True"
+               PopupAnimation="Fade"
+               HorizontalOffset="-28"
+               VerticalOffset="0">
+                <ContentControl Style="{DynamicResource Popup_style}" Visibility="{Binding VisibleUserProfile}">
+                    <StackPanel Margin="5 10 5 5" >
+                        <Button Template="{StaticResource AccountMenuButton}" Command="{Binding WatchingGameLibraryCommand}" Margin="10">Моя библиотека</Button>
+                        <Button Template="{StaticResource AccountMenuButton}" Margin="10">Настройки профиля</Button>
+                        <Button Template="{StaticResource AccountMenuButton}" Command="{Binding ExitProfileCommand}" Margin="10" >Выйти с профиля</Button>
+                        <Button Template="{StaticResource AccountMenuButton}" Command="{Binding AddCardCommand}">Добавить способ оплаты</Button>
+                    </StackPanel>
+                </ContentControl>
+            </Popup>
+
+            <Button Template="{StaticResource ButtonMenu}" Margin="20,0,0,0" Visibility="{Binding VisibleUserProfile}" Command="{Binding WatchingCartCommand}">
+                <StackPanel Orientation="Horizontal">
+                    
+                    <Image Source="https://image.flaticon.com/icons/png/512/126/126083.png" Width="50"></Image>
+                    
+                    <Border BorderThickness="4" CornerRadius="14" Background="Black" Width="30">
+                        <TextBlock Text="{Binding QuantityGames}" VerticalAlignment="Center" Foreground="White" 
+                                   FontWeight="Bold" FontSize="20" Height="30" 
+                                   HorizontalAlignment="Center"></TextBlock>
+                    </Border>
+
+
+                </StackPanel>
+            </Button>
+            <Button Command="{Binding AuthorizationCommand}" Template="{StaticResource OrangeButton}" Visibility="{Binding VisibleForAuthorizationButton}">Войти</Button>
+        </StackPanel>
+        
+        <StackPanel Grid.Column="0" Orientation="Horizontal">
+            <ToggleButton Template="{StaticResource AccountButton}" FontWeight="Bold" Margin="40,0,0,0" x:Name="GamesToogleButton" FontSize="16">Игры</ToggleButton>
+
+            <Popup StaysOpen="True" IsOpen="{Binding IsChecked, ElementName=GamesToogleButton, Mode=TwoWay}" 
+                   
+               PlacementTarget="{Binding ElementName=GamesToogleButton}" 
+               AllowsTransparency="True"
+               PopupAnimation="Scroll"
+               HorizontalOffset="-38"
+               VerticalOffset="0">
+                <ContentControl Style="{DynamicResource Popup_style}">
+                    <StackPanel Margin="5 10 5 5" >
+                        <Button Template="{StaticResource AccountMenuButton}" Command="{Binding GetAllGames}">Все игры магазина</Button>
+                        <TextBlock  HorizontalAlignment="Center" FontSize="13" FontWeight="Bold" Foreground="White" Margin="0,10,0,0">Отобразить по жанру:</TextBlock>
+                        <ComboBox ItemsSource="{Binding Genres}" SelectedItem="{Binding CurrentGenre}"></ComboBox>
+                        <Button Template="{StaticResource AccountMenuButton}" Margin="0,10,0,0" Command="{Binding GetNewGamesCommand}">Новинки</Button>
+                    </StackPanel>
+                </ContentControl>
+            </Popup>
+        </StackPanel>
+    </Grid>
+</UserControl>

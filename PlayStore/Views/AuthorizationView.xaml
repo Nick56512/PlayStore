@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="PlayStore.Views.AuthorizationView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PlayStore.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800"
+             DataContext="{Binding Source={StaticResource locator}, Path=AuthorizationViewModel}"
+             >
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Styles/Styles1.xaml"></ResourceDictionary>
+    </UserControl.Resources>
+    
+    
+
+
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="2*"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1.78*"></RowDefinition>
+            <RowDefinition Height="2.3*"></RowDefinition>
+            <RowDefinition Height="0"></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Column="1">
+            <Image Source="https://cdn.iconscout.com/icon/free/png-512/play-game-675401.png" Width="200"></Image>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="Логин" HorizontalAlignment="Left" FontSize="18" ></TextBlock>
+
+            <Border CornerRadius="16" BorderBrush="#FFABADB3" BorderThickness="1"
+                                 VerticalAlignment="Center" UseLayoutRounding="True"
+                                 >
+                <TextBox BorderThickness="0" 
+                                 Background="Transparent"
+                                 FontSize="20"
+                                 Margin="5"
+                                 Height="30"
+                                 Text="{Binding Login}"
+                                 />
+            </Border>
+
+            <TextBlock Text="Пароль" HorizontalAlignment="Left" FontSize="18" ></TextBlock>
+            <Border CornerRadius="16" BorderBrush="#FFABADB3" BorderThickness="1"
+                                 VerticalAlignment="Center" UseLayoutRounding="True"
+                                 >
+                <PasswordBox BorderThickness="0" 
+                                 Background="Transparent"
+                                 FontSize="20"
+                                 Margin="5"
+                                 Height="30"
+                                 x:Name="PasswordBox"
+                                 />
+            </Border>
+            <CheckBox HorizontalAlignment="Center" Margin="5" FontSize="15" IsChecked="{Binding SaveProfile}">Сохраниться для последующего входа</CheckBox>
+            <Button Template="{StaticResource GreenButton}" Margin="15" Command="{Binding AuthorizationCommand}"
+                   
+                    CommandParameter="{Binding ElementName=PasswordBox}">Войти</Button>
+            
+            <TextBlock Text="{Binding Info}" Margin="1" TextWrapping="WrapWithOverflow" FontSize="15" Foreground="Red"></TextBlock>
+            <TextBlock  FontSize="17">
+                Нет учетной записи?
+                <Hyperlink Command="{Binding GoRegistrationCommand}">
+                    Создайте её
+                </Hyperlink>
+            </TextBlock>
+
+        </StackPanel>
+    </Grid>
+
+   
+</UserControl>

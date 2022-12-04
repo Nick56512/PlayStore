@@ -1,0 +1,12 @@
+C:\Users\Fox\source\repos\PlayStore\PlayStore.DAL\bin\Debug\PlayStore.DAL.dll.config
+C:\Users\Fox\source\repos\PlayStore\PlayStore.DAL\bin\Debug\PlayStore.DAL.dll
+C:\Users\Fox\source\repos\PlayStore\PlayStore.DAL\bin\Debug\PlayStore.DAL.pdb
+C:\Users\Fox\source\repos\PlayStore\PlayStore.DAL\bin\Debug\EntityFramework.dll
+C:\Users\Fox\source\repos\PlayStore\PlayStore.DAL\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Fox\source\repos\PlayStore\PlayStore.DAL\bin\Debug\EntityFramework.xml
+C:\Users\Fox\source\repos\PlayStore\PlayStore.DAL\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Fox\source\repos\PlayStore\PlayStore.DAL\obj\Debug\PlayStore.DAL.csprojAssemblyReference.cache
+C:\Users\Fox\source\repos\PlayStore\PlayStore.DAL\obj\Debug\PlayStore.DAL.csproj.CoreCompileInputs.cache
+C:\Users\Fox\source\repos\PlayStore\PlayStore.DAL\obj\Debug\PlayStore.DAL.csproj.CopyComplete
+C:\Users\Fox\source\repos\PlayStore\PlayStore.DAL\obj\Debug\PlayStore.DAL.dll
+C:\Users\Fox\source\repos\PlayStore\PlayStore.DAL\obj\Debug\PlayStore.DAL.pdb

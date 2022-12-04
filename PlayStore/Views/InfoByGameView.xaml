@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="PlayStore.Views.InfoByGameView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PlayStore.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="1000" d:DesignWidth="980"
+             DataContext="{Binding Source={StaticResource locator}, Path=InfoByGameViewModel}">
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Styles/Styles1.xaml"></ResourceDictionary>
+    </UserControl.Resources>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <StackPanel Orientation="Vertical" Grid.Row="0">
+                <Image Source="{Binding Game.Cover}" Height="300" Width="250">
+
+                </Image>
+                <Button Template="{StaticResource BlackButton}" Width="300" Height="40" Command="{Binding AddToCartCommand}" FontSize="20">В корзину</Button>
+            </StackPanel>
+
+            <StackPanel Grid.Row="1" Orientation="Vertical">
+                <TextBlock FontSize="29" Text="{Binding Game.Name}" FontWeight="Black"></TextBlock>
+                <TextBlock FontSize="20" Text="{Binding Game.Developer}"></TextBlock>
+                <TextBlock FontSize="20" Text="{Binding Game.ReleaseDate.Value.Date}"></TextBlock>
+                <TextBlock FontSize="20" Text="{Binding Game.Genre}"></TextBlock>
+
+
+                <ListView ItemsSource="{Binding Screenshots}" ScrollViewer.VerticalScrollBarVisibility="Hidden" Width="980" MaxHeight="300" BorderBrush="White"
+                          >
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel MaxWidth="800" MinWidth="160">
+
+                            </WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Image Source="{Binding Photo}" Width="250" Height="200" HorizontalAlignment="Center"></Image>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+                </ListView>
+                <TextBlock Margin="10" FontSize="18" MaxWidth="600" MaxHeight="200" Text="{Binding Game.Description}" TextWrapping="WrapWithOverflow"></TextBlock>
+                <TextBlock  Margin="15" HorizontalAlignment="Center" FontSize="27">Минимальные системные требования</TextBlock>
+            </StackPanel>
+
+            <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" HorizontalAlignment="Right" Margin="5">
+                    <TextBlock FontSize="16" HorizontalAlignment="Right" FontWeight="ExtraBlack">ОС:</TextBlock>
+                    <TextBlock FontSize="16" HorizontalAlignment="Right" FontWeight="ExtraBlack">Объем оперативной памяти:</TextBlock>
+                    <TextBlock FontSize="16" HorizontalAlignment="Right" FontWeight="ExtraBlack">Место на диске:</TextBlock>
+                    <TextBlock FontSize="16" HorizontalAlignment="Right" FontWeight="ExtraBlack">Видеокарта:</TextBlock>
+                    <TextBlock FontSize="16" HorizontalAlignment="Right" FontWeight="ExtraBlack">Звуковая карта:</TextBlock>
+                    <TextBlock FontSize="16" HorizontalAlignment="Right" FontWeight="ExtraBlack">Процессор:</TextBlock>
+                </StackPanel>
+                
+                <StackPanel Orientation="Vertical" Grid.Column="1" HorizontalAlignment="Left" Margin="5">
+                    <TextBlock FontSize="16" HorizontalAlignment="Left" Text="{Binding Game.Platforms}" ></TextBlock>
+                    <TextBlock FontSize="16" Text="{Binding Game.MinMemory}"></TextBlock>
+                    <TextBlock FontSize="16" Text="{Binding Game.HDDSpace}"></TextBlock>
+                    <TextBlock FontSize="16" Text="{Binding Game.VideoCard}" TextWrapping="WrapWithOverflow"></TextBlock>
+                    <TextBlock FontSize="16" Text="{Binding Game.SoundCard}" ></TextBlock>
+                    <TextBlock FontSize="16" Text="{Binding Game.Processors}" TextWrapping="WrapWithOverflow"></TextBlock>
+                </StackPanel>
+            </Grid>
+            
+        </Grid>
+    </ScrollViewer>
+</UserControl>
